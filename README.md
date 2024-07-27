@@ -20,3 +20,11 @@ cairo_move_to (cr, fiddle_lmar+r.x+hspa/2., ystartpos);
 and actually ystartpos can be 0 and it's fine.
 
 however there still problems with the right side
+
+# jpred0.c
+This is part of the image reduction programs (imred0.c) but it uses rahra's cairo_jpg repository
+to allow cairo to read in a jpg into a cairo surface. Note I compiled this as a shared
+library and put it into /usr/local
+
+In terms of output, png is a good idea as it's failry efficient. PDF is not so good
+it seems to take all the jpg even if you only deal with a part of it.
