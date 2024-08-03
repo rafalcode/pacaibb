@@ -1,5 +1,5 @@
 # taking bits out of pacariodems to get the building blocks of the code.
-EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp tb2 jpred2 xif0
+EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp tb2 jpred2 xif0 jpred3 jpred4 convda
 
 CC=gcc
 CFLAGS=-g -Wall
@@ -47,13 +47,24 @@ jpred0: jpred0.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
 jpred1: jpred1.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+# picks the centre of the image and does a strip at bottom
 jpred2: jpred2.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
-xif0: xif0.c
+# so jpred2.c is pretty good now,
+jpred3: jpred3.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+# now we allow a focus point that is not the middle and requires cc.py to be run
+jpred4: jpred4.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2} -lexif
+xif0: xif0.c
+	${CC} ${CFLAGS} -I/usr/include/x86_64-linux-gnu -o $@ $^ -lexif
+	# ${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2} -lexif
 
 imred00: imred00.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+
+convda: convda.c
+	${CC} ${CFLAGS} -o $@ $^
 
 .PHONY: clean
 
