@@ -1,5 +1,5 @@
 # taking bits out of pacariodems to get the building blocks of the code.
-EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp tb2 jpred2 xif0 jpred3 jpred4 convda
+EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0
 
 CC=gcc
 CFLAGS=-g -Wall
@@ -23,8 +23,11 @@ pabb: pabb.c
 tblockr: tblockr.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 # a simpler tblockr so I can fit it in better with jpred1.c
+# # i had trouble decomlexiing it thoug
 tb2: tb2.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+speeb0: speeb0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
 
 
 # setting indent just not working. There is a workaround, add a html symbol of some sort and space
@@ -56,7 +59,11 @@ jpred3: jpred3.c
 # now we allow a focus point that is not the middle and requires cc.py to be run
 jpred4: jpred4.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2} -lexif
+jpred5: jpred5.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2} -lexif
 xif0: xif0.c
+	${CC} ${CFLAGS} -I/usr/include/x86_64-linux-gnu -o $@ $^ -lexif
+xif1: xif1.c
 	${CC} ${CFLAGS} -I/usr/include/x86_64-linux-gnu -o $@ $^ -lexif
 	# ${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2} -lexif
 
