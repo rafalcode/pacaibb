@@ -1,5 +1,5 @@
 # taking bits out of pacariodems to get the building blocks of the code.
-EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0
+EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 pabb2 roxlu chagex0 chagex1 chagex2
 
 CC=gcc
 CFLAGS=-g -Wall
@@ -7,6 +7,7 @@ DBGCFLAGS=-g -Wall -DDBG
 
 PANGINCS=-I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -pthread -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1
 PANGLIBS=-lpangocairo-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lm -lcairo
+PANGLIBS1=-lpangocairo-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lm -lcairo -lpangoft2-1.0 -lfreetype
 PANGLIBS2=-lpangocairo-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lm -lcairo -lcairo_jpg -ljpeg
 
 # this version pretty much like the pacairodems0 one.
@@ -20,6 +21,8 @@ htblkz2: htblkz2.c
 # tblockr.c: I take htblkz2.c and improve it.
 pabb: pabb.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+pabb2: pabb2.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 tblockr: tblockr.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 # a simpler tblockr so I can fit it in better with jpred1.c
@@ -27,6 +30,17 @@ tblockr: tblockr.c
 tb2: tb2.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 speeb0: speeb0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+
+# Chatgpt exampls .. trying to get the stroke. Chatgpt says:
+chagex0: chagex0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+# riffing on chagex0:
+chagex01: chagex01.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+chagex1: chagex1.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+chagex2: chagex2.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
 
 
@@ -38,6 +52,15 @@ cairosimple: cairosimple.c
 # I've left the above intact, the following are my mods.
 mycaisimp: mycaisimp.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+# Will it format a sonnet?
+son0: son0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+son1: son1.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+son2: son2.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+roxlu: roxlu.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS1}
 
 # imred0 ... image reduce, but using only cairo. From cl3a.c in ciarobegs repo.
 imclip: imclip.c
