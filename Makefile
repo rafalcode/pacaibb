@@ -1,5 +1,5 @@
 # taking bits out of pacariodems to get the building blocks of the code.
-EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 pabb2 roxlu chagex0 chagex1 chagex2
+EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 pabb2 roxlu chagex0 chagex1 chagex2 chagex01 chagex02 chagya0
 
 CC=gcc
 CFLAGS=-g -Wall
@@ -35,9 +35,24 @@ speeb0: speeb0.c
 # Chatgpt exampls .. trying to get the stroke. Chatgpt says:
 chagex0: chagex0.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
-# riffing on chagex0:
+
+# riffing on chagex0. Actually, chagex01 is for getting pango layout
+# and forming a rectnagle from the inkrect dimensions. the height extension
+# unusually gives extra space, where as width is actually quite exact.
 chagex01: chagex01.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+# chagex01: actually what has to happen is you need to define the bounding
+# rectangle first, and iteratively find an inkrect for the chosen text
+# which adapts to it by reducing and/or increasing the font size
+# # OK chagex02.c is the one for that.
+chagex02: chagex02.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+# chagex01: actually what has to happen is you need to define the bounding
+
+chagya0: chagya0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2} -lyaml
+
+
 chagex1: chagex1.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
 chagex2: chagex2.c
