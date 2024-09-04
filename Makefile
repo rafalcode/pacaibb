@@ -1,5 +1,5 @@
 # taking bits out of pacariodems to get the building blocks of the code.
-EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 pabb2 roxlu chagex0 chagex1 chagex2 chagex01 chagex02 chagya0
+EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 pabb2 roxlu chagex0 chagex1 chagex2 chagex01 chagex02 chagya0 cairotwisted ctwi0 chab0 bdt0 arrow0 outrarr0 arrow1 outrarr1
 
 CC=gcc
 CFLAGS=-g -Wall
@@ -77,7 +77,7 @@ son2: son2.c
 roxlu: roxlu.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS1}
 
-# imred0 ... image reduce, but using only cairo. From cl3a.c in ciarobegs repo.
+# imred0 ... image reduce, but using only cairo. From cl3a.c in cairobegs repo.
 imclip: imclip.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 jpgo: jpgo.c
@@ -110,6 +110,23 @@ imred00: imred00.c
 
 convda: convda.c
 	${CC} ${CFLAGS} -o $@ $^
+
+cairotwisted: cairotwisted.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+ctwi0: ctwi0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+bdt0: bdt0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+chab0: chab0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+arrow0: arrow0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+arrow1: arrow1.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+outrarr0: outrarr0.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
+outrarr1: outrarr1.c
+	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 
 .PHONY: clean
 
