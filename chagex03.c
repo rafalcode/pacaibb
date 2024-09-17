@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
     cairo_fill(cr);
 
     // Save the output
-    cairo_surface_write_to_png(surface, "chagex01.png");
+    cairo_surface_write_to_png(surface, "chagex03.png");
 
     // Clean up
     g_object_unref(layout);
