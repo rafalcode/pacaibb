@@ -1,11 +1,13 @@
 # taking bits out of pacariodems to get the building blocks of the code.
-EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 pabb2 roxlu chagex0 chagex1 chagex2 chagex01 chagex02 chagya0 cairotwisted ctwi0 chab0 bdt0 arrow0 outrarr0 arrow1 outrarr1 chagex03
+EXECUTABLES=htblkz htblk jpgo imred0 imclip jpred0 jpred1 tblockr pabb cairosimple mycaisimp son0 son1 son2 tb2 jpred2 xif0 jpred3 jpred4 convda jpred5 xif1 speeb0 speeb1 pabb2 roxlu chagex0 chagex1 chagex2 chagex01 chagex02 chagya0 cairotwisted ctwi0 chab0 bdt0 arrow0 outrarr0 arrow1 outrarr1 chagex03 instcap0
 
 CC=gcc
 CFLAGS=-g -Wall
 DBGCFLAGS=-g -Wall -DDBG
 
 PANGINCS=-I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -pthread -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1
+ARCHPANGINCS=-I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/sysprof-6
+ARCHPANGLIBS=-pthread -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -lgobject-2.0 -lglib-2.0 -lm -lcairo -lcairo_jpg -ljpeg
 PANGLIBS=-lpangocairo-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lm -lcairo
 PANGLIBS1=-lpangocairo-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lm -lcairo -lpangoft2-1.0 -lfreetype
 PANGLIBS2=-lpangocairo-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lm -lcairo -lcairo_jpg -ljpeg
@@ -30,7 +32,13 @@ tblockr: tblockr.c
 tb2: tb2.c
 	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS}
 speeb0: speeb0.c
-	${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+	# ${CC} ${CFLAGS} ${PANGINCS} -o $@ $^ ${PANGLIBS2}
+	${CC} ${CFLAGS} ${ARCHPANGINCS} -o $@ $^ ${ARCHPANGLIBS}
+
+speeb1: speeb1.c
+	${CC} ${CFLAGS} ${ARCHPANGINCS} -o $@ $^ ${ARCHPANGLIBS}
+instcap0: instcap0.c
+	${CC} ${CFLAGS} ${ARCHPANGINCS} -o $@ $^ ${ARCHPANGLIBS}
 
 # Chatgpt exampls .. trying to get the stroke. Chatgpt says:
 chagex0: chagex0.c
